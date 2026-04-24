@@ -335,7 +335,7 @@ export const Schema = z.object({
           z
             .object({
               性别: z.string(),
-              头衔: z.enum(VALID_TITLES),
+              头衔: z.array(z.enum(VALID_TITLES)),
               首府: z.enum(VALID_BARONIES),
               封臣: z.array(z.string()),
               领主: z.string(),
