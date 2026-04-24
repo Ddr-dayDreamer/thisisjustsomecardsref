@@ -163,12 +163,12 @@ export const Schema = z.object({
 
   玩家: z
     .object({
-      _出生年份: z.coerce.number(),
+      出生年份: z.coerce.number().readonly(),
       称号: z.array(z.string()).prefault(['无名之辈']),
       所在男爵领: z.enum(VALID_BARONIES),
       所在位置: z.string(),
       金币: z.coerce.number(),
-      _月度金币变化: z.coerce.number(),
+      月度金币变化: z.coerce.number(),
       声名: z
         .object({
           大众好感度: z.coerce.number().transform(value => _.clamp(value, -100, 100)),
@@ -185,8 +185,7 @@ export const Schema = z.object({
       产业与建筑: z
         .record(
           z.string(),
-          z
-            .object({
+          z.object({
               详情: z.string(),
               所在地: z.enum(VALID_BARONIES),
               收入: z.coerce.number(),
@@ -206,9 +205,8 @@ export const Schema = z.object({
       亲信: z
         .record(
           z.string(),
-          z
-            .object({
-              _出生年份: z.coerce.number(),
+          z.object({
+              出生年份: z.coerce.number(),
               称号: z.array(z.string()),
               关系: z.array(z.string()),
               外表: z.array(z.string()),
@@ -232,8 +230,7 @@ export const Schema = z.object({
       加成: z
         .record(
           z.string(),
-          z
-            .object({
+          z.object({
               描述: z.string(),
               效果: z.string(),
             })
@@ -308,12 +305,12 @@ export const Schema = z.object({
       其他军队: z.record(z.string(), ArmySchema).prefault({}),
 
       // 地图数据
-      _地图: z
+      地图: z
         .record(
           z.string(),
           z
             .object({
-              _位置: z.object({
+              位置: z.object({
                 x: z.coerce.number(),
                 y: z.coerce.number(),
               }),
@@ -356,7 +353,7 @@ export const Schema = z.object({
       联盟: {},
       战争: {},
       其他军队: {},
-      _地图: {},
+      地图: {},
       势力: {},
     }),
 });
