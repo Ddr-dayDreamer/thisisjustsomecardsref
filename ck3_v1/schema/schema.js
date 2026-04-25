@@ -310,10 +310,12 @@ export const Schema = z.object({
           z.string(),
           z
             .object({
-              位置: z.object({
-                x: z.coerce.number(),
-                y: z.coerce.number(),
-              }),
+              位置: z
+                .object({
+                  x: z.coerce.number().prefault(0),
+                  y: z.coerce.number().prefault(0),
+                })
+                .prefault({ x: 0, y: 0 }),
               控制力: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
               发展度: z.coerce.number().transform(value => _.clamp(value, 0, 100)),
             })
