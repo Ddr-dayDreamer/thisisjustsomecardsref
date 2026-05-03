@@ -358,7 +358,7 @@ export const Schema = z.object({
       地图: {},
       势力: {},
     }),
-});
+}).strict();
 
 $(() => {
   registerMvuSchema(Schema);
